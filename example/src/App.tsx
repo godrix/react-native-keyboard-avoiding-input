@@ -1,18 +1,19 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-input-avoiding-keyboard';
+import { StyleSheet, View, TextInput } from 'react-native';
+import { InputAvoidingKeyboard } from 'react-native-input-avoiding-keyboard';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const [state, setState] = React.useState("")
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <InputAvoidingKeyboard
+        input={TextInput}
+        placeholder="Text me!"
+        value={state}
+        onChangeText={setState}
+      />
     </View>
   );
 }
