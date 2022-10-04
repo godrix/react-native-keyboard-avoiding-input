@@ -11,27 +11,26 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
-  Text
+  Text,
 } from 'react-native';
 
 import Style from './style';
 import { isIOSDevice, keyBoardTypeHelperForIos } from '../utils';
 
+
 type Props = TextInputProps & {
   input: React.ComponentType<TextInputProps>;
-  actionButtonIcon?: React.ReactNode;
   showPasswordIcon?: React.ReactNode;
   hidePasswordIcon?: React.ReactNode;
+  toggleShowText?: string;
+  toggleHideText?: string;
+  returnKeyIcon?: React.ReactNode;
   actionLabelStyle?: StyleProp<TextStyle>;
   actionContainerStyle?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
-  showToggleVisibilityPassword?: boolean;
-  doneText?: string;
-  clearText?: string;
-  showText?: string;
-  hideText?: string;
-  actionButtonType?: 'done' | 'clear' | undefined;
+  toggleVisibilityPassword?: boolean;
+  returnKeyTypeClear?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
 };
@@ -53,18 +52,18 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
     onChangeText,
     secureTextEntry,
     onSubmitEditing,
+    returnKeyType,
+    returnKeyLabel,
     input: Input,
-    actionButtonIcon,
+    returnKeyIcon,
     showPasswordIcon,
     hidePasswordIcon,
     inputStyle,
     containerStyle,
-    doneText = "Done",
-    clearText = "Clear",
-    showText = "Show",
-    hideText = "Hide",
-    actionButtonType,
-    showToggleVisibilityPassword = false,
+    toggleShowText = "Show",
+    toggleHideText = "Hide",
+    toggleVisibilityPassword = false,
+    returnKeyTypeClear = false,
     onOpen,
     onClose,
     actionLabelStyle,
@@ -119,11 +118,11 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
   };
 
   const renderActionButton = () => {
-    if (!secureTextEntry && actionButtonType) {
-      const iconAction = actionButtonIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{actionButtonType === 'done' ? doneText : clearText}</Text>;
-      const isDone = actionButtonType === 'done';
+    if (!secureTextEntry) {
+      const iconAction = returnKeyIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{returnKeyLabel || returnKeyType}</Text>;
+
       return (
-        <TouchableOpacity style={[Style.action, actionContainerStyle]} onPress={isDone ? () => _onSubmitEditing() : () => clearInput()}>
+        <TouchableOpacity style={[Style.action, actionContainerStyle]} onPress={returnKeyTypeClear ? () => clearInput() : () => _onSubmitEditing()}>
           {iconAction}
         </TouchableOpacity>)
     }
@@ -133,9 +132,9 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
 
   const renderPasswordIcon = () => {
 
-    if (secureTextEntry && showToggleVisibilityPassword) {
-      const iconHide = hidePasswordIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{hideText}</Text>;
-      const iconShow = showPasswordIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{showText}</Text>;
+    if (secureTextEntry && toggleVisibilityPassword) {
+      const iconHide = hidePasswordIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{toggleHideText}</Text>;
+      const iconShow = showPasswordIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{toggleShowText}</Text>;
       return (
         <TouchableOpacity
           style={[Style.action, actionContainerStyle]}

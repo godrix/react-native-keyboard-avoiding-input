@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { KeyboardTypeOptions, Platform } from 'react-native';
 
 export const isIOSDevice = () => {

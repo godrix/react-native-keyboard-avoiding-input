@@ -18,21 +18,20 @@ export default function App() {
         input={TextInput}
         placeholder="Text me!"
         value={state}
+        returnKeyType="next"
         onChangeText={setState}
-        actionButtonType="done"
-        doneText={'next'}
+
         onSubmitEditing={() => inputref.current?.open()}
       />
       <KeyboardAvoidingInput
         input={TextInput}
         ref={inputref}
         placeholder="Other TextInput"
-        actionButtonIcon={
+        returnKeyIcon={
           <MaterialIcons name="close" size={24} color="black" />
         }
         value={state2}
         onChangeText={setState2}
-        actionButtonType="done"
       />
     </View>
   );

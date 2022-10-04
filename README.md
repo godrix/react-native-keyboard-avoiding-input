@@ -130,20 +130,20 @@ const inputRef = React.useRef<KeyboardAvoidingInputHandle>(null)
 | Name   |      Description      |  Details |
 |----------|:-------------:|------:|
 | input |  React component type TextInput | `required` TextInput Component |
- |actionButtonType| Add an action button for `Done` that uses `onSubmitEditing` and in the case of `Clear` cleans Input | `done`  `clear`  `undefined`|
- |actionButtonIcon| Renders an icon in place of `Done` or `Clear` text  | `React component` |
- |doneText| Change the text of `Done` | `string` |
- |clearText| Change the text of `Clear` | `string` |
- |showText|Change the text of `Show` | `string` |
- |hideText| Change the text of `Hide` | `string` |
- |showPasswordIcon| Renders an icon in place of `Show` | `React component` |
- |hidePasswordIcon|Renders an icon in place of `Hide`| `React component` |
- |actionLabelStyle| responsible for the style of the texts of `Done`, `Clear`, `Hide` or `Show` | `StyleProp<TextStyle>` |
- |actionContainerStyle| responsible for the container of the action text | `StyleProp<ViewStyle>` |
- |containerStyle| Responsible for the `KeyboardAvoidingInput` container style | `StyleProp<ViewStyle>` |
- |inputStyle| Responsible for the `KeyboardAvoidingInput` style | `StyleProp<TextInputStyle>`  |
- |onOpen| function called the input is opened | `function` |
- |onClose| function called the input is closed| `function` |
+|returnKeyTypeClear| Changes returnKey behavior to clean the TextInput | `boolean` |
+|returnKeyLabel| By default the `returnKeyType` is used | `string` |
+|returnKeyIcon| Renders an icon in place of `returnKeyLabel` or `returnKeyType` text  | `React component` |
+|toggleVisibilityPassword| Renders toggle for show and hide pass, required `secureTextEntry` | `boolean` |
+|toggleShowText|Change the text of `Show` when toggleVisibilityPassword is true | `string` |
+|toggleHideText| Change the text of `Hide` when toggleVisibilityPassword is true | `string` |
+|showPasswordIcon| Renders an icon in place of `Show` | `React component` |
+|hidePasswordIcon|Renders an icon in place of `Hide`| `React component` |
+|actionLabelStyle| responsible for the style of the texts of `Done`, `Clear`, `Hide` or `Show` | `StyleProp<TextStyle>` |
+|actionContainerStyle| responsible for the container of the action text | `StyleProp<ViewStyle>` |
+|containerStyle| Responsible for the `KeyboardAvoidingInput` container style | `StyleProp<ViewStyle>` |
+|inputStyle| Responsible for the `KeyboardAvoidingInput` style | `StyleProp<TextInputStyle>`  |
+|onOpen| function called the input is opened | `function` |
+|onClose| function called the input is closed| `function` |
 
 ## Contributing
 
