@@ -3,18 +3,18 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { StyleSheet, View, TextInput } from 'react-native';
 import {
-  InputAvoidingKeyboard,
-  InputAvoidingKeyboardHandle,
-} from 'react-native-input-avoiding-keyboard';
+  KeyboardAvoidingInput,
+  KeyboardAvoidingInputHandle,
+} from 'react-native-keyboard-avoiding-input';
 
 export default function App() {
   const [state, setState] = React.useState('');
   const [state2, setState2] = React.useState('');
-  const inputref = React.useRef<InputAvoidingKeyboardHandle>(null);
+  const inputref = React.useRef<KeyboardAvoidingInputHandle>(null);
 
   return (
     <View style={styles.container}>
-      <InputAvoidingKeyboard
+      <KeyboardAvoidingInput
         input={TextInput}
         placeholder="Text me!"
         value={state}
@@ -23,7 +23,7 @@ export default function App() {
         doneText={'next'}
         onSubmitEditing={() => inputref.current?.open()}
       />
-      <InputAvoidingKeyboard
+      <KeyboardAvoidingInput
         input={TextInput}
         ref={inputref}
         placeholder="Other TextInput"

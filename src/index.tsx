@@ -1,3 +1,3 @@
-import { InputAvoidingKeyboard, InputAvoidingKeyboardHandle } from './lib';
+import { KeyboardAvoidingInput, KeyboardAvoidingInputHandle } from './lib';
 
-export { InputAvoidingKeyboard, InputAvoidingKeyboardHandle };
+export { KeyboardAvoidingInput, KeyboardAvoidingInputHandle };

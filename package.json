@@ -1,5 +1,5 @@
 {
-  "name": "react-native-input-avoiding-keyboard",
+  "name": "react-native-keyboard-avoiding-input",
   "version": "0.1.0",
   "description": "This library allows you to pass the textinput just above the keyboard, thus floating on it, in cases that this is necessary. All the props are passed down to a new TextInput Component.",
   "main": "lib/commonjs/index.js",
@@ -16,7 +16,6 @@
     "android",
     "ios",
     "cpp",
-    "react-native-input-avoiding-keyboard.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build"
@@ -41,13 +40,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/godrix/react-native-input-avoiding-keyboard",
+  "repository": "https://github.com/godrix/react-native-keyboard-avoiding-input",
   "author": "Carlos Godri <cggodri@gmail.com> (https://github.com/godrix)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/godrix/react-native-input-avoiding-keyboard/issues"
+    "url": "https://github.com/godrix/react-native-keyboard-avoiding-input/issues"
   },
-  "homepage": "https://github.com/godrix/react-native-input-avoiding-keyboard#readme",
+  "homepage": "https://github.com/godrix/react-native-keyboard-avoiding-input#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

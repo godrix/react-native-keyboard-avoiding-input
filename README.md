@@ -1,25 +1,27 @@
-# react native input avoiding keyboard 📲
+# react native keyboard avoiding input 📲
 This library allows you to pass the textinput just above the keyboard, thus floating on it, in cases that this is necessary
 
 All the props are passed down to a new TextInput Component.
 
-![iOS Example](./.github/images/ios/sample.gif) ![Android Example](./.github/images/android/sample.gif)
+|           iOS Example            |           Android Example        |
+| :---------------------------: | :---------------------------: |
+| ![iOS Example](./.github/images/ios/sample.gif) | ![Android Example](./.github/images/android/sample.gif) |
 
 ## Installation
 
 ```sh
-npm install react-native-input-avoiding-keyboard
+npm install react-native-keyboard-avoiding-input
 ```
 
 ## Usage
 
 ```js
 import { TextInput } from 'react-native';
-import { InputAvoidingKeyboard } from 'react-native-input-avoiding-keyboard';
+import { KeyboardAvoidingInput } from 'react-native-keyboard-avoiding-input';
 
 // ...
 
- <InputAvoidingKeyboard
+ <KeyboardAvoidingInput
     input={TextInput}
 
     // Rest props a text input
@@ -33,7 +35,7 @@ import { InputAvoidingKeyboard } from 'react-native-input-avoiding-keyboard';
 ## Usage with style-components 💅🏾
 
 ```js
-import { InputAvoidingKeyboard } from 'react-native-input-avoiding-keyboard';
+import { KeyboardAvoidingInput } from 'react-native-keyboard-avoiding-input';
 import styled from 'styled-components/native';
 
 
@@ -49,7 +51,7 @@ const InputAwesome = styled.TextInput`
 
 // ...
 
- <InputAvoidingKeyboard
+ <KeyboardAvoidingInput
     input={InputAwesome}
 
     // Rest props a TextInput
@@ -59,7 +61,7 @@ const InputAwesome = styled.TextInput`
 ## Usage with react-hook-form 📋
 
 ```js
-import { InputAvoidingKeyboard } from 'react-native-input-avoiding-keyboard';
+import { KeyboardAvoidingInput } from 'react-native-keyboard-avoiding-input';
 import styled from 'styled-components/native';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -81,7 +83,7 @@ const {control} = useForm();
     name="name"
     control={control}
     render={({ field: { onChange, onBlur, value } }) => (
-      <InputAvoidingKeyboard
+      <KeyboardAvoidingInput
         input={InputAwesome}
 
         placeholder="It's me! Carlio"
@@ -95,24 +97,26 @@ const {control} = useForm();
 ## How to select the next TextInput
 The library exposes some methods through the ref `open`, `close`, `focus`, `clear`
 
-![iOS Example](./.github/images/ios/sample-ref.gif) ![Android Example](./.github/images/android/sample-ref.gif)
+|           iOS Example            |           Android Example        |
+| :---------------------------: | :---------------------------: |
+| ![iOS Example](./.github/images/ios/sample-ref.gif) | ![Android Example](./.github/images/android/sample-ref.gif) |
 
 ```js
 import { TextInput } from 'react-native';
-import { InputAvoidingKeyboard, InputAvoidingKeyboardHandle } from 'react-native-input-avoiding-keyboard';
+import { KeyboardAvoidingInput, KeyboardAvoidingInputHandle } from 'react-native-keyboard-avoiding-input';
 
 // ...
 
-const inputRef = React.useRef<InputAvoidingKeyboardHandle>(null)
+const inputRef = React.useRef<KeyboardAvoidingInputHandle>(null)
 
- <InputAvoidingKeyboard
+ <KeyboardAvoidingInput
     input={TextInput}
     // Rest props a text input
-    onSubmitEditing={()=> inputref.current?.open()}
+    onSubmitEditing={()=> inputRef.current?.open()}
     placeholder="Text me!"
     />
 
- <InputAvoidingKeyboard
+ <KeyboardAvoidingInput
     input={TextInput}
     ref={inputRef}
     // Rest props a text input
@@ -136,8 +140,8 @@ const inputRef = React.useRef<InputAvoidingKeyboardHandle>(null)
  |hidePasswordIcon|Renders an icon in place of `Hide`| `React component` |
  |actionLabelStyle| responsible for the style of the texts of `Done`, `Clear`, `Hide` or `Show` | `StyleProp<TextStyle>` |
  |actionContainerStyle| responsible for the container of the action text | `StyleProp<ViewStyle>` |
- |containerStyle| Responsible for the `InputAvoidingKeyboard` container style | `StyleProp<ViewStyle>` |
- |inputStyle| Responsible for the `InputAvoidingKeyboard` style | `StyleProp<TextInputStyle>`  |
+ |containerStyle| Responsible for the `KeyboardAvoidingInput` container style | `StyleProp<ViewStyle>` |
+ |inputStyle| Responsible for the `KeyboardAvoidingInput` style | `StyleProp<TextInputStyle>`  |
  |onOpen| function called the input is opened | `function` |
  |onClose| function called the input is closed| `function` |
 
@@ -145,6 +149,10 @@ const inputRef = React.useRef<InputAvoidingKeyboardHandle>(null)
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
+## Give me a Star
+If you think this project is helpful just give me a ⭐️ :D
+
 ## License
 
-react-native-input-avoiding-keyboard is [MIT licensed](https://github.com/godrix/react-native-input-avoiding-keyboard/tree/main/LICENSE) and built with ❤️ in 🇧🇷 by [Godrix](https://www.linkedin.com/in/carlosgodri/)
+react-native-keyboard-avoiding-input is [MIT licensed](https://github.com/godrix/react-native-keyboard-avoiding-input/tree/main/LICENSE) and built with ❤️ in 🇧🇷 by [Godrix](https://www.linkedin.com/in/carlosgodri/)
+

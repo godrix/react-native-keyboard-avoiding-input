@@ -1,6 +1,6 @@
 {
-  "name": "react-native-input-avoiding-keyboard-example",
-  "description": "Example app for react-native-input-avoiding-keyboard",
+  "name": "react-native-keyboard-avoiding-input-example",
+  "description": "Example app for react-native-keyboard-avoiding-input",
   "version": "0.0.1",
   "private": true,
   "main": "index",
