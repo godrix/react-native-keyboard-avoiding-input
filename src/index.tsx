@@ -1,3 +1,3 @@
-import { KeyboardAvoidingInput, KeyboardAvoidingInputHandle } from './lib';
+import { KeyboardAvoidingInput, KeyboardAvoidingInputHandle } from './component';
 
 export { KeyboardAvoidingInput, KeyboardAvoidingInputHandle };
