@@ -95,7 +95,7 @@ const {control} = useForm();
       />
 ```
 ## How to select the next TextInput
-The library exposes some methods through the ref `open`, `close`, `focus`, `clear`
+The library exposes some methods through the ref `focus`, `blur` and `clear`
 
 |           iOS Example            |           Android Example        |
 | :---------------------------: | :---------------------------: |
@@ -112,7 +112,7 @@ const inputRef = React.useRef<KeyboardAvoidingInputHandle>(null)
  <KeyboardAvoidingInput
     input={TextInput}
     // Rest props a text input
-    onSubmitEditing={()=> inputRef.current?.open()}
+    onSubmitEditing={()=> inputRef.current?.focus()}
     placeholder="Text me!"
     />
 

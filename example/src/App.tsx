@@ -21,7 +21,7 @@ export default function App() {
         returnKeyType="next"
         onChangeText={setState}
 
-        onSubmitEditing={() => inputref.current?.open()}
+        onSubmitEditing={() => inputref.current?.focus()}
       />
       <KeyboardAvoidingInput
         input={TextInput}

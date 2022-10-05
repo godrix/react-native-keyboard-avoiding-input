@@ -36,9 +36,8 @@ type Props = TextInputProps & {
 };
 
 export type KeyboardAvoidingInputHandle = {
-  open: () => void;
-  close: () => void;
   focus: () => void;
+  blur: () => void;
   clear: () => void;
 };
 
@@ -78,9 +77,8 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [visiblePass, setVisiblePass] = useState(false);
 
-  const open = () => openModal();
-  const close = () => closeModal();
-  const focus = () => inputRef?.current?.focus();
+  const focus = () => openModal();
+  const blur = () => closeModal();
   const clear = () => clearInput();
 
   const toggleVisiblePass = () => setVisiblePass(prev => !prev);
@@ -148,9 +146,8 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
   }
 
   useImperativeHandle(ref, () => ({
-    open,
-    close,
     focus,
+    blur,
     clear,
   }));
 
