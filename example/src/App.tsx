@@ -20,7 +20,7 @@ export default function App() {
         value={state}
         returnKeyType="next"
         onChangeText={setState}
-
+        onOpen={() => console.log('abriu')}
         onSubmitEditing={() => inputref.current?.focus()}
       />
       <KeyboardAvoidingInput

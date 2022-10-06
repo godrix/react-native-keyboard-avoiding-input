@@ -88,7 +88,9 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
       return;
     }
     setModalVisible(true);
-    inputRef?.current?.focus();
+    !isIOS && setTimeout(() => {
+      inputRef?.current?.focus();
+    }, 10)
     onOpen && onOpen();
   };
   const closeModal = () => {
@@ -153,16 +155,18 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
 
   return (
     <>
-      <Input
-        {...rest}
-        style={style}
-        keyboardType={keyboardType}
-        editable={!modalVisible}
-        secureTextEntry={secureTextEntry}
-        onChangeText={onChangeText}
-        value={value}
-        onFocus={openModal}
-      />
+      <TouchableOpacity onPress={openModal} activeOpacity={1}>
+        <Input
+          {...rest}
+          style={style}
+          keyboardType={keyboardType}
+          editable={isIOS ? !modalVisible : false}
+          secureTextEntry={secureTextEntry}
+          onChangeText={onChangeText}
+          value={value}
+          onFocus={openModal}
+        />
+      </TouchableOpacity>
       <Modal
         visible={modalVisible}
         onShow={focus}
