@@ -88,9 +88,9 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
       return;
     }
     setModalVisible(true);
-    !isIOS && setTimeout(() => {
-      inputRef?.current?.focus();
-    }, 10)
+
+    setTimeout(() => { inputRef?.current?.focus(); }, 300);
+
     onOpen && onOpen();
   };
   const closeModal = () => {
@@ -105,10 +105,10 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
     onSubmitEditing?.(e);
   };
   const _onBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    closeModal();
     onBlur?.(e);
   };
   const _onFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    e.preventDefault();
     openModal();
     onFocus?.(e);
   };
@@ -155,18 +155,18 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
 
   return (
     <>
-      <TouchableOpacity onPress={openModal} activeOpacity={1}>
-        <Input
-          {...rest}
-          style={style}
-          keyboardType={keyboardType}
-          editable={isIOS ? !modalVisible : false}
-          secureTextEntry={secureTextEntry}
-          onChangeText={onChangeText}
-          value={value}
-          onFocus={openModal}
-        />
-      </TouchableOpacity>
+      <Input
+        {...rest}
+        style={style}
+        keyboardType={keyboardType}
+        editable={isIOS ? !modalVisible : true}
+        secureTextEntry={secureTextEntry}
+        onChangeText={onChangeText}
+        onPressIn={openModal}
+        value={value}
+        onFocus={_onFocus}
+        onBlur={_onBlur}
+      />
       <Modal
         visible={modalVisible}
         onShow={focus}
