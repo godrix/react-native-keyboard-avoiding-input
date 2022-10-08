@@ -17,7 +17,6 @@ import {
 import Style from './style';
 import { isIOSDevice, keyBoardTypeHelperForIos } from '../utils';
 
-
 type Props = TextInputProps & {
   input: React.ComponentType<TextInputProps>;
   showPasswordIcon?: React.ReactNode;
@@ -33,6 +32,7 @@ type Props = TextInputProps & {
   returnKeyTypeClear?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
+  androidOpenInputDelay?: number;
 };
 
 export type KeyboardAvoidingInputHandle = {
@@ -59,12 +59,13 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
     hidePasswordIcon,
     inputStyle,
     containerStyle,
-    toggleShowText = "Show",
-    toggleHideText = "Hide",
+    toggleShowText = 'Show',
+    toggleHideText = 'Hide',
     toggleVisibilityPassword = false,
     returnKeyTypeClear = false,
     onOpen,
     onClose,
+    androidOpenInputDelay = 200,
     actionLabelStyle,
     actionContainerStyle,
     ...rest
@@ -81,7 +82,7 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
   const blur = () => closeModal();
   const clear = () => clearInput();
 
-  const toggleVisiblePass = () => setVisiblePass(prev => !prev);
+  const toggleVisiblePass = () => setVisiblePass((prev) => !prev);
 
   const openModal = () => {
     if (modalVisible) {
@@ -89,22 +90,25 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
     }
     setModalVisible(true);
 
-    setTimeout(() => { inputRef?.current?.focus(); }, 300);
+    setTimeout(() => {
+      inputRef?.current?.focus();
+    }, androidOpenInputDelay);
 
-    onOpen && onOpen();
+    onOpen?.();
   };
   const closeModal = () => {
     setModalVisible(false);
     if (visiblePass) {
       toggleVisiblePass();
     }
-    onClose && onClose();
+    onClose?.();
   };
   const _onSubmitEditing = (e?: any) => {
     closeModal();
     onSubmitEditing?.(e);
   };
   const _onBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    closeModal();
     onBlur?.(e);
   };
   const _onFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -119,33 +123,38 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
 
   const renderActionButton = () => {
     if (!secureTextEntry) {
-      const iconAction = returnKeyIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{returnKeyLabel || returnKeyType}</Text>;
+      const iconAction = returnKeyIcon || (
+        <Text style={[Style.actionLabel, actionLabelStyle]}>{returnKeyLabel || returnKeyType}</Text>
+      );
 
       return (
-        <TouchableOpacity style={[Style.action, actionContainerStyle]} onPress={returnKeyTypeClear ? () => clearInput() : () => _onSubmitEditing()}>
+        <TouchableOpacity
+          style={[Style.action, actionContainerStyle]}
+          onPress={returnKeyTypeClear ? () => clearInput() : () => _onSubmitEditing()}>
           {iconAction}
-        </TouchableOpacity>)
+        </TouchableOpacity>
+      );
     }
 
     return null;
   };
 
   const renderPasswordIcon = () => {
-
     if (secureTextEntry && toggleVisibilityPassword) {
-      const iconHide = hidePasswordIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{toggleHideText}</Text>;
-      const iconShow = showPasswordIcon || <Text style={[Style.actionLabel, actionLabelStyle]}>{toggleShowText}</Text>;
+      const iconHide = hidePasswordIcon || (
+        <Text style={[Style.actionLabel, actionLabelStyle]}>{toggleHideText}</Text>
+      );
+      const iconShow = showPasswordIcon || (
+        <Text style={[Style.actionLabel, actionLabelStyle]}>{toggleShowText}</Text>
+      );
       return (
-        <TouchableOpacity
-          style={[Style.action, actionContainerStyle]}
-          onPress={toggleVisiblePass}>
+        <TouchableOpacity style={[Style.action, actionContainerStyle]} onPress={toggleVisiblePass}>
           {visiblePass ? iconHide : iconShow}
         </TouchableOpacity>
       );
     }
     return null;
-
-  }
+  };
 
   useImperativeHandle(ref, () => ({
     focus,
@@ -164,6 +173,7 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
         onChangeText={onChangeText}
         onPressIn={openModal}
         value={value}
+        showSoftInputOnFocus={isIOS}
         onFocus={_onFocus}
         onBlur={_onBlur}
       />
@@ -175,7 +185,11 @@ export const KeyboardAvoidingInput = forwardRef((props: Props, ref) => {
         animationType="slide">
         <SafeAreaView style={Style.safeArea}>
           <TouchableOpacity style={Style.outside} onPress={closeModal} />
-          <View style={[keyBoardTypeHelperIos ? Style.wrapperFixKeyboardType : Style.wrapper, containerStyle]}>
+          <View
+            style={[
+              keyBoardTypeHelperIos ? Style.wrapperFixKeyboardType : Style.wrapper,
+              containerStyle,
+            ]}>
             <TextInput
               ref={inputRef}
               {...rest}

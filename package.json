@@ -1,6 +1,6 @@
 {
   "name": "react-native-keyboard-avoiding-input",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "This library allows you to pass the textinput just above the keyboard, thus floating on it, in cases that this is necessary. All the props are passed down to a new TextInput Component.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
